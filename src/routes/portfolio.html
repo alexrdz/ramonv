@@ -1,0 +1,186 @@
+<svelte:head>
+	<title>{$siteTitle} : Portfolio</title>
+</svelte:head>
+
+<div class="wrapper">
+  
+  <div class="portfolio-container text-center d-flex justify-content-between align-items-center">
+    <div class="left-arrow-container" on:click="prevItem()" class:disabled="disablePrev">
+      <ArrowSmallIcon direction="left" ref:prev />
+    </div>
+    
+    
+    <div class="carousel portfolio-content flex-fill d-flex">
+        {#each $portItems as item, i}
+        <div class="port-item position-absolute hidden animate" 
+              class:slide-out-left="i <= currentItem - 1"
+              class:slide-in-right="i === currentItem"
+              class:position-relative="i === portItemsLength"
+              >
+              <h1 class="category text-uppercase hidden-small position-relative animate delay-1" 
+              class:slide-out-left="i <= currentItem - 1"
+              class:slide-in-right="i === currentItem">
+              {item.category}
+            </h1>
+            
+            <h2 class="project-title text-uppercase mb-5 hidden-small position-relative animate delay-2" 
+                class:slide-out-left="i <= currentItem - 1"
+                class:slide-in-right="i === currentItem">
+              {item.title}
+            </h2>
+            
+            
+            <figure>
+              <img src={item.img} alt="" class="mb-5">
+          
+              <caption class="d-block w-75 mx-auto text-center">
+                <p class="description">
+                    {item.desc}
+                </p>
+              </caption>
+            </figure>
+        </div>
+        {/each}
+    </div>
+
+    <div class="right-arrow-container" on:click="nextItem()" class:disabled="disableNext">
+      <ArrowSmallIcon direction="right" ref:next/>
+    </div>
+  </div>
+  
+</div>
+
+
+
+<script>
+  import ArrowSmallIcon from '../components/ArrowSmallIcon.html';
+
+  export default {
+    components: {
+      ArrowSmallIcon,
+    },
+    oncreate() {
+      console.log('this.refs', this.refs);
+    },
+    data() {
+      return {
+        currentItem: 0,
+      };
+    },
+    computed: {
+      portItemsLength({$portItems}) {
+        return $portItems.length - 1;
+      },
+    },
+    methods: {
+      nextItem() {
+        if (this.get().disableNext) return;
+
+        let next = this.get().currentItem + 1;
+        next = next === this.store.get().portItems.length ? 0 : next;
+
+        this.set({
+          currentItem: next,
+        });
+        
+        if (next === this.store.get().portItems.length - 1) {
+          this.set({
+            disableNext: true,
+          });
+        }
+      },
+      
+      prevItem() {        
+        let prev = this.get().currentItem - 1;
+        prev = prev <= 0 ? 0 : prev;
+        
+        if (prev === 0) {
+          this.set({disablePrev: true});
+        }
+        
+        this.set({
+          currentItem: prev,
+          disableNext: false,
+        });
+
+        if (this.get().disablePrev) return;
+        
+      },
+    }
+  }
+</script>
+
+
+<style>
+  .portfolio-container {
+    padding: 2rem;
+  }
+  @media (min-width: 480px) {
+  .portfolio-container {
+    padding: 5rem 6rem;
+  }
+  h1 {
+    font-size: 1rem;
+  }
+  img {
+    box-shadow: 0 2px 44px 0 rgba(0,0,0,0.13);
+  }
+  p {
+    color: #9B9B9B;
+  }
+
+
+
+  .carousel {
+    overflow: hidden;
+  }
+  .left-arrow-container,
+  .right-arrow-container {
+    cursor: pointer;
+    width: 20px;
+  }
+  .disabled {
+    cursor: default;
+    opacity: .5;
+  }
+
+  .animate {
+    transition: all 1s cubic-bezier(1, 0, 0.5, 1);
+  }
+
+  .port-item {
+    width: 100%;
+  }
+  .hidden {
+    left: 100%;
+  }
+  .hidden-small {
+    left: 80%;
+    opacity: 0;
+  }
+  .position-relative {
+    position: relative !important;
+  }
+
+
+  .slide-in-right {
+    left: 0;
+    opacity: 1;
+  }
+  .slide-out-left {
+    left: -100%;
+  }
+
+  .delay-1 {
+    transition-delay: .15s;
+  }
+  .delay-2 {
+    transition-delay: .35s;
+  }
+  .delay-3 {
+    transition-delay: .35s;
+  }
+
+
+}
+</style>

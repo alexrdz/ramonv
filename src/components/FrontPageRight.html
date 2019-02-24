@@ -1,0 +1,60 @@
+<div class="col-md-6 h-100vh d-flex align-items-center order-1 order-md-2 shift" class:fade-in="$slideIn">
+  <div class="container pt-10">
+
+    <div class="text-center pb-2">
+      <img src="img/grvlogo.png" alt="G Ramon Villarreal :: Graphic Designer" class="logo img-fluid">
+      <h3 class="condensed">Experienced graphic designer, maker &amp; artist.</h3>
+
+      <p>
+          From an idea to the finished product, I enjoy working in all design levels, developing ideas and applying design to all posible aspects. From typography to screen printing to furniture design and construction, I try to ensure design application reflects my clients' ideas and exceeds their expectations. I do not like to create designs my clients merely like; I like to create things so my client fall in love. We may like a lot of things in life but only fall in love with some of them. And I do believe love is forever.
+      </p>
+
+      <div class="d-block mb-4">
+        <ArrowIcon />
+      </div>
+      <a href="portfolio" class="portfolio-link d-block">
+        Portfolio
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+  import ArrowIcon from './ArrowIcon.html';
+
+  export default {
+    components: {
+      ArrowIcon,
+    },
+    methods: {
+      // goto(e) {
+      //   e.preventDefault();
+      //   this.store.set({slideIn: false});
+      //   setTimeout(() => {
+      //     location.assign(e.target.pathname);
+      //   }, 500);
+      // },
+    }
+  }
+</script>
+
+<style>
+	.logo, h3, p {
+		margin-bottom: 4rem;
+  }
+	p {
+		color: #9B9B9B;
+	}
+	.portfolio-link {
+		color: #EDC054;
+		fill: #EDC054;
+  }
+  .portfolio-link:hover {
+    color: #181818;
+    fill: #181818;
+  }
+
+</style>

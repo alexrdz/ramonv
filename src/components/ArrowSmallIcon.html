@@ -1,0 +1,28 @@
+
+<svg class:right="isRight" width="12px" height="22px" viewBox="0 0 12 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="" transform="translate(-174.000000, -439.000000)" fill="#1B1B1B">
+          <path d="M174.390079,460.597131 C173.869974,460.06089 173.869974,459.189153 174.390079,458.652912 L182.780934,450.000172 L174.390079,441.347432 C173.869974,440.81119 173.869974,439.939454 174.390079,439.403212 C174.910184,438.865596 175.754857,438.865596 176.276292,439.403212 L185.608923,449.028062 C186.130359,449.564304 186.130359,450.43604 185.608923,450.972282 L176.276292,460.597131 C176.015574,460.865252 175.673715,461 175.333186,461 C174.991326,461 174.650797,460.865252 174.390079,460.597131 L174.390079,460.597131 Z" id="Left-Arrow" transform="translate(180.000000, 450.000000) scale(-1, 1) translate(-180.000000, -450.000000) "></path>
+      </g>
+  </g>
+</svg>
+
+
+<script>
+  export default {
+    computed: {
+      isRight({direction}) {
+        if (direction === 'right') {
+          return true;
+        }
+      },
+    }
+  }
+</script>
+
+
+<style>
+.right {
+  transform: rotate(180deg);
+}
+</style>

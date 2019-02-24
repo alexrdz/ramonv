@@ -1,0 +1,31 @@
+<svelte:head>
+	<title>{$siteTitle}</title>
+</svelte:head>
+
+<div class="container-fluid">
+		<div class="row">
+			<FrontPageLeft />
+			
+			<FrontPageRight />
+			
+		</div>
+</div>
+
+<script>
+	import FrontPageLeft from '../components/FrontPageLeft.html';
+	import FrontPageRight from '../components/FrontPageRight.html';
+
+	export default {
+		components: {
+			FrontPageLeft,
+			FrontPageRight,
+		}
+	}
+</script>
+
+
+<style>
+
+
+
+</style>
