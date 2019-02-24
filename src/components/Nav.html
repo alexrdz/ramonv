@@ -2,23 +2,23 @@
 		<button on:click="showHideNav()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" class:show="show" id="navbarTogglerDemo01">
+		<div class="collapse navbar-collapse" class:show="$showNav" id="navbarTogglerDemo01">
 			<!-- <a class="navbar-brand" href="#link">Hidden brand</a> -->
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item mr-4">
-					<a class="active nav-link" class:text-white="locationLength < 1" href="/">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link {segment === undefined ? 'active' : ''}" class:text-white="locationLength < 1" href="/">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item mr-4">
-					<a class="nav-link" class:text-white="locationLength < 1" href="portfolio">Portfolio</a>
+					<a class="nav-link {segment === 'portfolio' ? 'active' : ''}" class:text-white="locationLength < 1" href="portfolio">Portfolio</a>
 				</li>
 				<li class="nav-item mr-4">
-					<a class="nav-link" class:text-white="locationLength < 1" href="#link">Fonts</a>
+					<a class="nav-link {segment === 'fonts' ? 'active' : ''}" class:text-white="locationLength < 1" href="#link">Fonts</a>
 				</li>
 				<li class="nav-item mr-4">
-					<a class="nav-link" class:text-white="locationLength < 1" href="about">Resume</a>
+					<a class="nav-link {segment === 'resume' ? 'active' : ''}" class:text-white="locationLength < 1" href="about">Resume</a>
 				</li>
 				<li class="nav-item mr-4">
-					<a class="nav-link" class:text-white="locationLength < 1" href="#link">Contact</a>
+					<a class="nav-link {segment === 'contact' ? 'active' : ''}" class:text-white="locationLength < 1" href="#link">Contact</a>
 				</li>
 			</ul>
 			<!-- <form class="form-inline my-2 my-lg-0">
@@ -27,16 +27,6 @@
 			</form> -->
 		</div>
 	</nav>
-<!-- <nav class="fixed-top fixed-right">
-	<ul>
-		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>home</a></li>
-		<li><a class='{segment === "about" ? "selected" : ""}' href='about'>about</a></li> -->
-
-		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<!-- <li><a rel=prefetch class='{segment === "blog" ? "selected" : ""}' href='blog'>blog</a></li>
-	</ul>
-</nav> -->
 
 <script>
 
@@ -52,7 +42,7 @@
 		},
 		methods: {
 			showHideNav() {
-				this.set({show: !this.get().show})
+				this.store.set({showNav: !this.store.get().showNav})
 			},
 		}
 	}

@@ -12,7 +12,7 @@
     
     <div class="carousel portfolio-content flex-fill d-flex">
         {#each $portItems as item, i}
-        <div class="port-item position-absolute hidden animate" 
+        <div class="portfolio-item position-absolute hidden animate" 
               class:slide-out-left="i <= currentItem - 1"
               class:slide-in-right="i === currentItem"
               class:position-relative="i === portItemsLength"
@@ -30,8 +30,8 @@
             </h2>
             
             
-            <figure>
-              <img src={item.img} alt="" class="mb-5">
+            <figure class="image-container">
+              <img src={item.img} alt="" class="img-fluid mb-5">
           
               <caption class="d-block w-75 mx-auto text-center">
                 <p class="description">
@@ -61,10 +61,15 @@
     },
     oncreate() {
       console.log('this.refs', this.refs);
+      this.store.set({showNav: false});
     },
     data() {
       return {
         currentItem: 0,
+        slideLeftOut: false,
+        slideLeftIn: true,
+        disableNext: false,
+        disablePrev: true,
       };
     },
     computed: {
@@ -81,6 +86,9 @@
 
         this.set({
           currentItem: next,
+          slideLeftOut: true,
+          slideLeftIn: false,
+          disablePrev: false,
         });
         
         if (next === this.store.get().portItems.length - 1) {
@@ -113,11 +121,12 @@
 
 <style>
   .portfolio-container {
-    padding: 2rem;
+    padding: 0;
   }
-  @media (min-width: 480px) {
-  .portfolio-container {
-    padding: 5rem 6rem;
+  @media (min-width: 800px) {
+    .portfolio-container {
+      padding: 5rem 6rem;
+    }
   }
   h1 {
     font-size: 1rem;
@@ -127,6 +136,10 @@
   }
   p {
     color: #9B9B9B;
+  }
+
+  .image-container {
+    padding: .5rem;
   }
 
 
@@ -145,11 +158,17 @@
   }
 
   .animate {
-    transition: all 1s cubic-bezier(1, 0, 0.5, 1);
+    transition: all .8s cubic-bezier(1, 0, 0.5, 1);
   }
 
-  .port-item {
+  .portfolio-item {
+    padding: 1rem;
     width: 100%;
+  }
+  @media (min-width: 600px) {
+    .portfolio-item {
+      padding: 0;
+    }
   }
   .hidden {
     left: 100%;
@@ -181,6 +200,4 @@
     transition-delay: .35s;
   }
 
-
-}
 </style>

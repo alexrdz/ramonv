@@ -18,4 +18,5 @@ export default new AppStore({
   siteTitle: 'G. Ramon Villarreal, Graphic Designer',
   slideIn: false,
   portItems,
+  showNav: false,
 });

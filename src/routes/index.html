@@ -19,7 +19,10 @@
 		components: {
 			FrontPageLeft,
 			FrontPageRight,
-		}
+		},
+		oncreate() {
+			this.store.set({showNav: false});
+		},
 	}
 </script>
 
