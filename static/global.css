@@ -1,11 +1,12 @@
 .wrapper {
 	background-image: url(/img/background-traingle.svg);
-	background-position: left top;
+	background-position: left 100%;
 	background-repeat: no-repeat;
 	padding: 1.5rem;
 }
 @media (min-width: 480px) {
 	.wrapper {
+		background-position: left top;
 		padding: 3rem;
 	}
 }
@@ -27,14 +28,11 @@ a:hover {
 .h-100vh {
 	min-height: 100vh;
 }
-@media (min-width: 760px) {
-	.h-100vh {
-		height: 100vh;
-	}
-}
+
 .pt-10 {
 	padding-top: 10vh;
 }
+
 
 .condensed {
 	letter-spacing: -.05rem;

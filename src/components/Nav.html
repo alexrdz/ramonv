@@ -21,6 +21,10 @@
 					<a class="nav-link {segment === 'contact' ? 'active' : ''}" class:text-white="locationLength < 1" href="#link">Contact</a>
 				</li>
 			</ul>
+
+			<a href="/" class="{segment !== undefined ? 'd-block' : 'd-none'}">
+				<img src="/img/grvlogo.png" alt="G. Ramon V., Graphic Designer" class="img-fluid grv-logo-nav">
+			</a>
 			<!-- <form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -77,6 +81,12 @@
 		color: #181818;
 	}
 
+	.grv-logo-nav {
+		width: 80px;
+	}
+	.show .grv-logo-nav {
+		display: none !important;
+	}
 	
 
 
